@@ -44,6 +44,9 @@ on:
       ref:
         description: Branch, tag or full SHA of the app repo (empty = default branch)
         default: ""
+      web_url:
+        description: "Website to test in the phone's browser instead of a built app (set a no-op android_build/ios_build + artifact path; the agent opens it in Chrome/Safari)"
+        default: ""
       brief:
         description: Agent brief file
         default: AGENT_BRIEF.md
@@ -243,6 +246,7 @@ jobs:
           LOCALE: ${{ matrix.locale }}
           GEO: ${{ matrix.geo }}
           APP_ID: ${{ inputs.app_id }}
+          WEB_URL: ${{ inputs.web_url }}
           BRIEF: ${{ inputs.bug_report != '' && inputs.brief == 'AGENT_BRIEF.md' && 'briefs/reproduce.md' || inputs.brief }}
           MODEL: ${{ inputs.model }}
           LLM_BASE_URL: ${{ inputs.llm_base_url }}
@@ -347,6 +351,7 @@ jobs:
           LOCALE: ${{ matrix.locale }}
           GEO: ${{ matrix.geo }}
           APP_ID: ${{ inputs.app_id }}
+          WEB_URL: ${{ inputs.web_url }}
           BRIEF: ${{ inputs.bug_report != '' && inputs.brief == 'AGENT_BRIEF.md' && 'briefs/reproduce.md' || inputs.brief }}
           MODEL: ${{ inputs.model }}
           LLM_BASE_URL: ${{ inputs.llm_base_url }}
